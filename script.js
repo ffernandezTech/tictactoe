@@ -1,29 +1,104 @@
 const startGame = () =>{
     const gameBoard = [
-        1,2,3,
-        4,5,6,
-        7,8,9
-
+        [1,2,3],
+        [4,5,6],
+        [7,8,9]
     ];
+        
+
 
     const result = ()=>{
         console.log('hello');
     }
     const display = ()=>{
-        let row =[];
-        let units ='';
-        let i = 0;
         gameBoard.forEach(cell => {
-            units.
-            if(cell%3 === 0)
-            {
-
-            }
+        
+            console.log(cell)
             
         });
     }
+    const testForWinner = (gamePiece) =>{
 
-    return {display, result};
+        let savingGamePiece = gamePiece;
+        let isThereAWinner = false;
+        savingGamePiece = 'X';
+        const savingIndex = [];
+        gameBoard.forEach((row, rowIndex) =>{
+
+            let rowWin = row.every(matching => matching ===savingGamePiece)
+            if(rowWin===true)
+            {
+                console.log('WINNER FOR');
+                
+            }
+            row.forEach((item, colIndex)=>{
+                // console.log(item +' row ' +rowIndex+' col ' + colIndex);
+
+                if(rowIndex<1)
+                {
+
+                     if(gameBoard[rowIndex][colIndex]=== gameBoard[rowIndex+1][colIndex])
+                        {
+                            if(gameBoard[rowIndex+1][colIndex] ===  gameBoard[rowIndex+2][colIndex])
+                            {
+                                console.log('WINNDER FOR COLUMNS');
+                            }
+                        }
+                    if(gameBoard[rowIndex][colIndex]=== gameBoard[rowIndex+1][colIndex+1])
+                    {
+                      if(gameBoard[rowIndex+1][colIndex+1]=== gameBoard[rowIndex+2][colIndex+2]) 
+                            {
+                                console.log('WINNDER FOR LEFT CROSS');
+                            }
+                    }
+                    
+
+                    if(isThereAWinner ===false)
+
+
+                        //Theres an issue with this outputting three times and cant seem to get it to work
+                    {
+                        if(gameBoard[rowIndex][colIndex] === gameBoard[1][1])
+                    {
+                        if(gameBoard[1][1] === gameBoard[2][0]) 
+                            {
+                                console.log('WINNDER FOR RIGHT CROSS');
+                                isThereAWinner === true;
+                            }
+                    }
+                    }
+                    
+                    
+                    
+                }
+               
+
+            })
+
+        });
+
+        
+
+
+     
+
+
+    }
+    const select = (move) =>{
+        gameBoard.forEach(cell =>{
+
+            let replace = cell.findIndex(element => element===move);
+            
+            if(replace!= -1) cell[replace]='X';
+        })
+        
+         display();
+         testForWinner();
+
+    }
+    
+
+    return {display, result , select};
 
 
 }
