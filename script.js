@@ -22,19 +22,23 @@ const startGame = () =>{
         let savingGamePiece = gamePiece;
         let isThereAWinner = false;
         savingGamePiece = 'X';
-        const savingIndex = [];
+        // const savingIndex = [];
         gameBoard.forEach((row, rowIndex) =>{
+
+            
 
             let rowWin = row.every(matching => matching ===savingGamePiece)
             if(rowWin===true)
             {
-                console.log('WINNER FOR');
+                console.log('WINNER FOR ROW');
                 
             }
             row.forEach((item, colIndex)=>{
+
                 // console.log(item +' row ' +rowIndex+' col ' + colIndex);
 
-                if(rowIndex<1)
+                // console.log('currently in ' + gameBoard[rowIndex][colIndex] + ' these are indexs being used ROW ' + rowIndex + ' This is the COL' + colIndex )
+                if(rowIndex == 0)
                 {
 
                      if(gameBoard[rowIndex][colIndex]=== gameBoard[rowIndex+1][colIndex])
@@ -53,7 +57,7 @@ const startGame = () =>{
                     }
                     
 
-                    if(isThereAWinner ===false)
+                    if(isThereAWinner == false)
 
 
                         //Theres an issue with this outputting three times and cant seem to get it to work
@@ -63,7 +67,7 @@ const startGame = () =>{
                         if(gameBoard[1][1] === gameBoard[2][0]) 
                             {
                                 console.log('WINNDER FOR RIGHT CROSS');
-                                isThereAWinner === true;
+                                isThereAWinner == true;
                             }
                     }
                     }
