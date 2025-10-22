@@ -4,6 +4,9 @@ const startGame = () =>{
         [4,5,6],
         [7,8,9]
     ];
+
+    let numberOfTurns = 1;
+    let isThereAWinner = false;
         
 
 
@@ -20,8 +23,12 @@ const startGame = () =>{
     const testForWinner = (gamePiece) =>{
 
         let savingGamePiece = gamePiece;
-        let isThereAWinner = false;
-        savingGamePiece = 'X';
+        // savingGamePiece = 'X';
+
+        numberOfTurns++;
+
+        
+
         // const savingIndex = [];
         gameBoard.forEach((row, rowIndex) =>{
 
@@ -31,6 +38,7 @@ const startGame = () =>{
             if(rowWin===true)
             {
                 console.log('WINNER FOR ROW');
+                isThereAWinner = true;
                 
             }
             row.forEach((item, colIndex)=>{
@@ -46,6 +54,7 @@ const startGame = () =>{
                             if(gameBoard[rowIndex+1][colIndex] ===  gameBoard[rowIndex+2][colIndex])
                             {
                                 console.log('WINNDER FOR COLUMNS');
+                                isThereAWinner = true;
                             }
                         }
                     if(gameBoard[rowIndex][colIndex]=== gameBoard[rowIndex+1][colIndex+1])
@@ -53,6 +62,7 @@ const startGame = () =>{
                       if(gameBoard[rowIndex+1][colIndex+1]=== gameBoard[rowIndex+2][colIndex+2]) 
                             {
                                 console.log('WINNDER FOR LEFT CROSS');
+                                isThereAWinner = true;
                             }
                     }
                     
@@ -81,23 +91,26 @@ const startGame = () =>{
 
         });
 
-        
+       if(numberOfTurns === 10 && isThereAWinner === false)
+        {
+            console.log('ITS A TIE');
+        } 
 
 
      
 
 
     }
-    const select = (move) =>{
+    const select = (move, playerPiece) =>{
         gameBoard.forEach(cell =>{
 
             let replace = cell.findIndex(element => element===move);
             
-            if(replace!= -1) cell[replace]='X';
+            if(replace!= -1) cell[replace]= playerPiece;
         })
         
          display();
-         testForWinner();
+         testForWinner(playerPiece);
 
     }
     
