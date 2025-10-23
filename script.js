@@ -7,8 +7,12 @@ const startGame = (() =>{
 
     let numberOfTurns = 1;
     let isThereAWinner = false;
+    let playerOneTurn = true;
+    const mainBody = document.querySelector('body');
+    const mainDiv = document.createElement('div');
     
-    const testForWinner = (gamePiece) =>{
+    
+    function testForWinner(gamePiece){
 
         let savingGamePiece = gamePiece;
         // savingGamePiece = 'X';
@@ -103,7 +107,7 @@ const startGame = (() =>{
     function setSelected(move, playerPiece){
         gameBoard.forEach(cell =>{
 
-            let replace = cell.findIndex(element => element===move);
+            let replace = cell.findIndex(element => element=== +move);
             
             if(replace!= -1) cell[replace]= playerPiece;
         })
@@ -111,10 +115,63 @@ const startGame = (() =>{
          setDisplay();
          testForWinner(playerPiece);
     }
+    function getPlayerChoice(){
+
+        if(playerOneTurn === true )
+        {
+            let input = prompt('Pick a location Player 1');
+            setSelected(input, 'X');
+            playerOneTurn = false;
+        }
+        else{
+            let input = prompt('Pick a location Player 2');
+            setSelected(input, 'O');
+            playerOneTurn = true;
+        }
+
+    }
 
     
-    setDisplay();
+    function createGamePad(){
+        // mainDiv.style.background='Black';
+        // mainDiv.textContent = 'HELLO WORLD';
+        mainBody.style.height= '100vh';
+        mainBody.style.alignContent= 'center';
+        
+        mainDiv.style.width= '400px';
+        mainDiv.style.height= '400px';
+        mainDiv.style.justifySelf= 'center';
+       
+        // mainDiv.style.border = 'solid red 2px'
+        mainDiv.style.color = 'white';
+        mainDiv.style.background = 'black';
 
+
+          
+        for(let i = 0; i<9; i++)
+        {
+            const creatingDivs = document.createElement('div');
+            creatingDivs.classList.add('TiTaToCell');
+            creatingDivs.style.background= 'white';
+            mainDiv.appendChild(creatingDivs);
+
+
+        }
+
+        mainDiv.style.display = 'grid';
+        mainDiv.style.gridTemplateColumns ='repeat(3, 120px)';
+        mainDiv.style.gridTemplateRows = 'repeat(3, 120px)';
+        mainDiv.style.gap='5px';
+
+        mainDiv.style.justifyContent= 'center';
+        mainDiv.style.alignContent= 'center';
+
+        mainBody.appendChild(mainDiv);
+
+
+    }
+    setDisplay();
+    createGamePad();
     return {setSelected};
 
 
