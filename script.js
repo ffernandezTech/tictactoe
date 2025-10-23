@@ -1,4 +1,4 @@
-const startGame = () =>{
+const startGame = (() =>{
     const gameBoard = [
         [1,2,3],
         [4,5,6],
@@ -7,19 +7,7 @@ const startGame = () =>{
 
     let numberOfTurns = 1;
     let isThereAWinner = false;
-        
-
-
-    const result = ()=>{
-        console.log('hello');
-    }
-    const display = ()=>{
-        gameBoard.forEach(cell => {
-        
-            console.log(cell)
-            
-        });
-    }
+    
     const testForWinner = (gamePiece) =>{
 
         let savingGamePiece = gamePiece;
@@ -66,10 +54,11 @@ const startGame = () =>{
                             }
                     }
                     
+                    
 
                     if(isThereAWinner == false)
 
-
+                    
                         //Theres an issue with this outputting three times and cant seem to get it to work
                     {
                         if(gameBoard[rowIndex][colIndex] === gameBoard[1][1])
@@ -101,7 +90,17 @@ const startGame = () =>{
 
 
     }
-    const select = (move, playerPiece) =>{
+
+    function setDisplay(){
+
+        gameBoard.forEach(cell => {
+        
+            console.log(cell)
+            
+        });
+    }
+
+    function setSelected(move, playerPiece){
         gameBoard.forEach(cell =>{
 
             let replace = cell.findIndex(element => element===move);
@@ -109,17 +108,17 @@ const startGame = () =>{
             if(replace!= -1) cell[replace]= playerPiece;
         })
         
-         display();
+         setDisplay();
          testForWinner(playerPiece);
-
     }
+
     
+    setDisplay();
 
-    return {display, result , select};
+    return {setSelected};
 
 
-}
+})();
 
-const start = startGame();
-start.display();
+
 
