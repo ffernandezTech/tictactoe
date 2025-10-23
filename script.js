@@ -117,17 +117,40 @@ const startGame = (() =>{
     }
     function getPlayerChoice(){
 
+        const getDivs = document.querySelectorAll('.TiTaToCell');
+
+        getDivs.forEach(cell =>{
+
+            
+            cell.addEventListener('click', (e)=>{
+            
         if(playerOneTurn === true )
-        {
-            let input = prompt('Pick a location Player 1');
-            setSelected(input, 'X');
-            playerOneTurn = false;
-        }
-        else{
-            let input = prompt('Pick a location Player 2');
-            setSelected(input, 'O');
-            playerOneTurn = true;
-        }
+            {
+                // let input = prompt('Pick a location Player 1');
+                // setSelected(input, 'X');
+                console.log('HELLO X')
+                cell.textContent = 'X';
+                cell.style.color= 'Red';
+                
+                playerOneTurn = false;
+            }
+        else
+            {
+                // let input = prompt('Pick a location Player 2');
+                // setSelected(input, 'O');
+                console.log('HELLO O')
+                cell.textContent = 'O';
+                cell.style.color= 'Green';
+                playerOneTurn = true;
+            }
+
+
+            })
+
+
+        })
+
+       
 
     }
 
@@ -153,6 +176,14 @@ const startGame = (() =>{
             const creatingDivs = document.createElement('div');
             creatingDivs.classList.add('TiTaToCell');
             creatingDivs.style.background= 'white';
+            // creatingDivs.style.color= 'black';
+            creatingDivs.style.fontSize = '50px';
+            creatingDivs.style.fontWeight ='bolder';
+            creatingDivs.style.display= 'flexbox';
+            creatingDivs.style.display = 'grid';
+            creatingDivs.style.justifyContent= 'center';
+            creatingDivs.style.alignContent= 'center';
+
             mainDiv.appendChild(creatingDivs);
 
 
@@ -167,6 +198,8 @@ const startGame = (() =>{
         mainDiv.style.alignContent= 'center';
 
         mainBody.appendChild(mainDiv);
+
+        getPlayerChoice();
 
 
     }
