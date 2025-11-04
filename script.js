@@ -170,9 +170,17 @@ const startGame = (() =>{
 
     }
     function setPlayerName(name){
+       playerName = name; 
        welcomeMessage.textContent= `Player 1 ('X') is ${name}`;
     }
 
+    function setRestartBtn(){
+        const getRestartbtn = document.querySelector('.btnRestart');
+        getRestartbtn.addEventListener('click', ()=>{
+            console.log('hello');
+            startGame();
+        })
+    }
     function getStartGameInfo(){
 
         const getStartBtn = document.querySelector('.btnStart');
@@ -234,6 +242,7 @@ const startGame = (() =>{
         mainBody.appendChild(mainDiv);
 
         getStartGameInfo();
+        setRestartBtn();
         
 
 
