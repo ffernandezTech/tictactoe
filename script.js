@@ -31,7 +31,7 @@ const startGame = (() =>{
         
         if(numberOfTurns >=4 && isThereAWinner == false)
         {
-            console.log(numberOfTurns);
+            // console.log(numberOfTurns);
             gameBoard.forEach((row, rowIndex) =>{
 
             
@@ -136,7 +136,10 @@ const startGame = (() =>{
             
         if(playerOneTurn === true )
             {                
-                const getCellID = cell.getAttribute('id');
+                let getCellID = cell.getAttribute('id');
+                getCellID = getCellID.slice(4);
+
+                console.log(getCellID + ' in X');
 
                 setSelected(getCellID, 'X', playerOneTurn);
                 cell.textContent = 'X';
@@ -146,7 +149,9 @@ const startGame = (() =>{
             }
         else
             {
-                 const getCellID = cell.getAttribute('id');
+                 let getCellID = cell.getAttribute('id');
+                  getCellID = getCellID.slice(4);
+                  console.log(getCellID +' in O');
 
                 setSelected(getCellID, 'O',playerOneTurn);
                 cell.textContent = 'O';
@@ -188,13 +193,10 @@ const startGame = (() =>{
 
     
     function createGamePad(){
-        // mainDiv.style.background='Black';
-        // mainDiv.textContent = 'HELLO WORLD';
-        mainBody.style.height= '100vh';
-        mainBody.style.alignContent= 'center';
+       
 
         const welcomeMessage = document.createElement('p');
-
+        mainDiv.setAttribute('class', 'mainContainer')
 
         const btnStart = document.createElement('button');
         const btnRestart = document.createElement('button');
@@ -207,53 +209,28 @@ const startGame = (() =>{
         
 
         const btnDiv = document.createElement('div');
+        btnDiv.setAttribute('class', 'buttonsDiv')
+        
 
         btnDiv.appendChild(btnStart);
         btnDiv.appendChild(btnRestart);
 
-        
-
         mainBody.appendChild(btnDiv);
-        btnDiv.style.justifySelf= 'center';
+
 
 
         
-        mainDiv.style.width= '400px';
-        mainDiv.style.height= '400px';
-        mainDiv.style.justifySelf= 'center';
-       
-        // mainDiv.style.border = 'solid red 2px'
-        mainDiv.style.color = 'white';
-        mainDiv.style.background = 'black';
 
 
           
         for(let i = 1; i<=9; i++)
         {
             const creatingDivs = document.createElement('div');
-            creatingDivs.classList.add(`TiTaToCell`);
-            creatingDivs.setAttribute('id', i );
-            creatingDivs.style.background= 'white';
-            // creatingDivs.style.color= 'black';
-            creatingDivs.style.fontSize = '50px';
-            creatingDivs.style.fontWeight ='bolder';
-            creatingDivs.style.display= 'flexbox';
-            creatingDivs.style.display = 'grid';
-            creatingDivs.style.justifyContent= 'center';
-            creatingDivs.style.alignContent= 'center';
-
+            creatingDivs.setAttribute('class', 'TiTaToCell');
+            creatingDivs.setAttribute('id', `cellNum${i}` );
             mainDiv.appendChild(creatingDivs);
-
-
         }
 
-        mainDiv.style.display = 'grid';
-        mainDiv.style.gridTemplateColumns ='repeat(3, 120px)';
-        mainDiv.style.gridTemplateRows = 'repeat(3, 120px)';
-        mainDiv.style.gap='5px';
-
-        mainDiv.style.justifyContent= 'center';
-        mainDiv.style.alignContent= 'center';
 
         mainBody.appendChild(mainDiv);
 
