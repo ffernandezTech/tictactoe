@@ -10,6 +10,7 @@ const startGame = (() =>{
     let playerOneTurn = true;
     const mainBody = document.querySelector('body');
     const mainDiv = document.createElement('div');
+    const welcomeMessage = document.createElement('p');
     
     
     function testForWinner(gamePiece, playerNumber){
@@ -137,7 +138,7 @@ const startGame = (() =>{
         if(playerOneTurn === true )
             {                
                 let getCellID = cell.getAttribute('id');
-                getCellID = getCellID.slice(4);
+                getCellID = getCellID.slice(7);
 
                 console.log(getCellID + ' in X');
 
@@ -150,7 +151,7 @@ const startGame = (() =>{
         else
             {
                  let getCellID = cell.getAttribute('id');
-                  getCellID = getCellID.slice(4);
+                  getCellID = getCellID.slice(7);
                   console.log(getCellID +' in O');
 
                 setSelected(getCellID, 'O',playerOneTurn);
@@ -169,11 +170,7 @@ const startGame = (() =>{
 
     }
     function setPlayerName(name){
-        playerName = name;
-
-
-
-
+       welcomeMessage.textContent= `Player 1 ('X') is ${name}`;
     }
 
     function getStartGameInfo(){
@@ -183,6 +180,7 @@ const startGame = (() =>{
             let name = prompt('Please enter your name');
 
             setPlayerName(name);
+            getPlayerChoice();
             
 
 
@@ -195,10 +193,8 @@ const startGame = (() =>{
     function createGamePad(){
        
 
-        const welcomeMessage = document.createElement('p');
+       
         welcomeMessage.setAttribute('class', 'welcomeMessage')
-        welcomeMessage.textContent= 'HELLO                          8';
-
         mainBody.appendChild(welcomeMessage);
 
         mainDiv.setAttribute('class', 'mainContainer')
@@ -238,7 +234,7 @@ const startGame = (() =>{
         mainBody.appendChild(mainDiv);
 
         getStartGameInfo();
-        getPlayerChoice();
+        
 
 
     }

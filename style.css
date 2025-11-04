@@ -28,6 +28,10 @@ body{
     justify-content: center;
     align-content: center;
 }
+.welcomeMessage{
+    font-size: 50px;
+    font-weight: bolder;
+}
 
 .TiTaToCell{
 
