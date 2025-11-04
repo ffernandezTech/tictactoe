@@ -196,17 +196,20 @@ const startGame = (() =>{
        
 
         const welcomeMessage = document.createElement('p');
+        welcomeMessage.setAttribute('class', 'welcomeMessage')
+        welcomeMessage.textContent= 'HELLO                          8';
+
+        mainBody.appendChild(welcomeMessage);
+
         mainDiv.setAttribute('class', 'mainContainer')
 
         const btnStart = document.createElement('button');
         const btnRestart = document.createElement('button');
-
         btnStart.setAttribute('class', 'gameBtns btnStart');
         btnRestart.setAttribute('class', 'gameBtns btnRestart');
-
         btnStart.textContent = 'Start';
         btnRestart.textContent = 'Restart';
-        
+
 
         const btnDiv = document.createElement('div');
         btnDiv.setAttribute('class', 'buttonsDiv')
