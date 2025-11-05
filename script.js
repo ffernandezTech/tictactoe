@@ -129,8 +129,8 @@ const startGame = (() =>{
     }
     function getPlayerChoice(){
 
+       
         const getDivs = document.querySelectorAll('.TiTaToCell');
-
         getDivs.forEach(cell =>{
 
             
@@ -177,8 +177,14 @@ const startGame = (() =>{
 
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
+        const getDivs = document.querySelectorAll('.TiTaToCell');
         getRestartbtn.addEventListener('click', ()=>{
-            console.log('hello');
+           
+
+            getDivs.forEach(cell =>{
+
+                cell.textContent = '';
+            })
             
         })
     }
@@ -191,6 +197,7 @@ const startGame = (() =>{
         else{
             alert(`${winner} have won! Sorry ${playerName} T_T`)
         }
+
         
 
     }
