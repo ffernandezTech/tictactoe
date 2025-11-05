@@ -41,7 +41,7 @@ const startGame = (() =>{
             if(rowWin===true)
             {
                 // console.log('test 0');
-                 console.log(`${playerNum} HAS WON`);
+                 setWinner(gamePiece);
                 isThereAWinner = true;
                 
             }
@@ -58,7 +58,7 @@ const startGame = (() =>{
                             if(gameBoard[rowIndex+1][colIndex] ===  gameBoard[rowIndex+2][colIndex])
                             {
                                 // console.log('test 1');
-                                console.log(`${playerNum} HAS WON`);
+                                setWinner(gamePiece);
                                 isThereAWinner = true;
                             }
                         }
@@ -67,7 +67,7 @@ const startGame = (() =>{
                       if(gameBoard[rowIndex+1][colIndex+1]=== gameBoard[rowIndex+2][colIndex+2]) 
                             {
                                 // console.log('test 2');
-                                console.log(`${playerNum} HAS WON`);
+                                setWinner(gamePiece);
                                 isThereAWinner = true;
                             }
                     }
@@ -80,7 +80,8 @@ const startGame = (() =>{
                         if(gameBoard[1][1] === gameBoard[2][0]) 
                             {
                                 // console.log('test 3');
-                                console.log(`${playerNum} HAS WON`);
+                                // console.log(`${playerNum} HAS WON`);
+                                setWinner(gamePiece);
                                 isThereAWinner = true;
                             }
                     }
@@ -97,7 +98,7 @@ const startGame = (() =>{
 
        if(numberOfTurns === 9 && isThereAWinner === false)
         {
-            console.log('ITS A TIE');
+            alert(`It's a TIE. Try again ${playerName}`);
         } 
         }
         numberOfTurns++;
@@ -140,7 +141,7 @@ const startGame = (() =>{
                 let getCellID = cell.getAttribute('id');
                 getCellID = getCellID.slice(7);
 
-                console.log(getCellID + ' in X');
+                // console.log(getCellID + ' in X');
 
                 setSelected(getCellID, 'X', playerOneTurn);
                 cell.textContent = 'X';
@@ -152,7 +153,7 @@ const startGame = (() =>{
             {
                  let getCellID = cell.getAttribute('id');
                   getCellID = getCellID.slice(7);
-                  console.log(getCellID +' in O');
+                //   console.log(getCellID +' in O');
 
                 setSelected(getCellID, 'O',playerOneTurn);
                 cell.textContent = 'O';
@@ -178,8 +179,20 @@ const startGame = (() =>{
         const getRestartbtn = document.querySelector('.btnRestart');
         getRestartbtn.addEventListener('click', ()=>{
             console.log('hello');
-            startGame();
+            
         })
+    }
+    function setWinner(winner){
+
+        if(winner === 'X')
+        {
+            alert(`${winner} have won! Good Job ${playerName} :D`)
+        }
+        else{
+            alert(`${winner} have won! Sorry ${playerName} T_T`)
+        }
+        
+
     }
     function getStartGameInfo(){
 
