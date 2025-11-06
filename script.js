@@ -8,7 +8,8 @@ const startGame = (() =>{
         [4,5,6],
         [7,8,9]
     ];
-    let playerName = '';
+    let player1Name = '';
+    let player2Name = '';
     let numberOfTurns = 1;
     let isThereAWinner = false;
     let playerOneTurn = true;
@@ -17,7 +18,7 @@ const startGame = (() =>{
     const welcomeMessage = document.createElement('p');
     
     
-    function testForWinner(gamePiece, playerNumber){
+    function testForWinner(gamePiece){
         let savingGamePiece = gamePiece;
         // let playerNum;
         // if(playerNumber === true)
@@ -74,7 +75,7 @@ const startGame = (() =>{
 
        if(numberOfTurns === 9 && isThereAWinner === false)
         {
-            alert(`It's a TIE. Try again ${playerName}`);
+            alert(`It's a TIE. Try again players `);
         } 
         }
         numberOfTurns++;
@@ -141,9 +142,11 @@ const startGame = (() =>{
        
 
     }
-    function setPlayerName(name){
-       playerName = name; 
-       welcomeMessage.textContent= `Player 1 ('X') is ${name}`;
+    function setPlayerName(name1, name2){
+       player1Name = name1; 
+       player2Name = name2
+
+       welcomeMessage.textContent= `Player 1 ('X') is ${name1} and Player 2 ('O') is ${name2}`;
     }
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
@@ -163,7 +166,8 @@ const startGame = (() =>{
         [4,5,6],
         [7,8,9]
     ];
-        playerName = '';
+        player1Name = '';
+        player2Name = '';
         numberOfTurns = 1;
         isThereAWinner = false;
         playerOneTurn = true;
@@ -175,10 +179,10 @@ const startGame = (() =>{
 
         if(winner === 'X')
         {
-            alert(`${winner} have won! Good Job ${playerName} :D`)
+            alert(`${winner} have won! Good Job ${player1Name} :D`)
         }
         else{
-            alert(`${winner} have won! Sorry ${playerName} T_T`)
+            alert(`${winner} have won! Good Job ${player2Name} :D`)
         }
 
         
@@ -188,7 +192,8 @@ const startGame = (() =>{
 
         const getStartBtn = document.querySelector('.btnStart');
         getStartBtn.addEventListener('click', ()=>{
-            let name = prompt('Please enter your name');
+            let p1Name = prompt('Please enter p1\'s name');
+            let p2Name = prompt('Please enter p2\'s name ')
               
         for(let i = 1; i<=9; i++)
         {
@@ -201,7 +206,7 @@ const startGame = (() =>{
 
         mainBody.appendChild(mainDiv);
 
-            setPlayerName(name);
+            setPlayerName(p1Name, p2Name);
             getPlayerChoice();
             // mainDiv.style.display = 'block';
             
