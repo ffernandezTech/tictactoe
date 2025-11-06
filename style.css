@@ -20,6 +20,7 @@ body{
     justify-self: center;
     color: white;
     background-color: black;
+    display: none;
 
     display: grid;
     grid-template-columns: repeat(3,120px);

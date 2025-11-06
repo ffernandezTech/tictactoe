@@ -1,5 +1,5 @@
 const startGame = (() =>{
-    const gameBoard = [
+    let gameBoard = [
         [1,2,3],
         [4,5,6],
         [7,8,9]
@@ -134,7 +134,7 @@ const startGame = (() =>{
         getDivs.forEach(cell =>{
 
             
-            cell.addEventListener('click', (e)=>{
+            cell.addEventListener('click', ()=>{
             
         if(playerOneTurn === true )
             {                
@@ -184,8 +184,25 @@ const startGame = (() =>{
             getDivs.forEach(cell =>{
 
                 cell.textContent = '';
+                
             })
-            
+
+        gameBoard.length = 0;
+         gameBoard = [
+        [1,2,3],
+        [4,5,6],
+        [7,8,9]
+    ];
+        playerName = '';
+        numberOfTurns = 1;
+        isThereAWinner = false;
+        playerOneTurn = true;
+
+        // mainBody.removeChild(mainDiv);
+        // createGamePad();
+       
+        // mainDiv.style.display = 'none';
+        
         })
     }
     function setWinner(winner){
@@ -206,19 +223,34 @@ const startGame = (() =>{
         const getStartBtn = document.querySelector('.btnStart');
         getStartBtn.addEventListener('click', ()=>{
             let name = prompt('Please enter your name');
+              
+        for(let i = 1; i<=9; i++)
+        {
+            const creatingDivs = document.createElement('div');
+            creatingDivs.setAttribute('class', 'TiTaToCell');
+            creatingDivs.setAttribute('id', `cellNum${i}` );
+            mainDiv.appendChild(creatingDivs);
+        }
+
+
+        mainBody.appendChild(mainDiv);
 
             setPlayerName(name);
             getPlayerChoice();
+            // mainDiv.style.display = 'block';
             
 
 
-
+        setRestartBtn();
         })
+        
 
     }
 
     
     function createGamePad(){
+
+        
        
 
        
@@ -249,20 +281,10 @@ const startGame = (() =>{
         
 
 
-          
-        for(let i = 1; i<=9; i++)
-        {
-            const creatingDivs = document.createElement('div');
-            creatingDivs.setAttribute('class', 'TiTaToCell');
-            creatingDivs.setAttribute('id', `cellNum${i}` );
-            mainDiv.appendChild(creatingDivs);
-        }
-
-
-        mainBody.appendChild(mainDiv);
+        
 
         getStartGameInfo();
-        setRestartBtn();
+        
         
 
 
