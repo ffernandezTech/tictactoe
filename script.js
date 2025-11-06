@@ -1,4 +1,8 @@
 const startGame = (() =>{
+
+    // Maybe this can be added to a function that sets everything up.
+    //But for now this works and the restart function would just have to handle resetting everything.
+    //Maybe to add more to the code have it ask for two players names.
     let gameBoard = [
         [1,2,3],
         [4,5,6],
@@ -14,45 +18,28 @@ const startGame = (() =>{
     
     
     function testForWinner(gamePiece, playerNumber){
-
         let savingGamePiece = gamePiece;
-        let playerNum;
-        if(playerNumber === true)
-        {
-            // console.log('player 1 is made')
-            playerNum = 'Player 1';
-        }
-        else
-        {
-            playerNum = 'Player 2'
-        }
-
-        
-
-        
+        // let playerNum;
+        // if(playerNumber === true)
+        // {
+        //     playerNum = 'Player 1';
+        // }
+        // else
+        // {
+        //     playerNum = 'Player 2'
+        // }
         if(numberOfTurns >=4 && isThereAWinner == false)
         {
-            // console.log(numberOfTurns);
             gameBoard.forEach((row, rowIndex) =>{
-
-            
-
             let rowWin = row.every(matching => matching ===savingGamePiece)
             if(rowWin===true)
             {
-                // console.log('test 0');
                  setWinner(gamePiece);
                 isThereAWinner = true;
-                
             }
             row.forEach((item, colIndex)=>{
-
-                // console.log(item +' row ' +rowIndex+' col ' + colIndex);
-
-                // console.log('currently in ' + gameBoard[rowIndex][colIndex] + ' these are indexs being used ROW ' + rowIndex + ' This is the COL' + colIndex )
                 if(rowIndex == 0)
                 {
-
                      if(gameBoard[rowIndex][colIndex]=== gameBoard[rowIndex+1][colIndex])
                         {
                             if(gameBoard[rowIndex+1][colIndex] ===  gameBoard[rowIndex+2][colIndex])
@@ -66,34 +53,23 @@ const startGame = (() =>{
                     {
                       if(gameBoard[rowIndex+1][colIndex+1]=== gameBoard[rowIndex+2][colIndex+2]) 
                             {
-                                // console.log('test 2');
                                 setWinner(gamePiece);
                                 isThereAWinner = true;
                             }
                     }
-                    
-                    
                     if(isThereAWinner === false)
                     {
                         if(gameBoard[0][2] === gameBoard[1][1])
                     {
                         if(gameBoard[1][1] === gameBoard[2][0]) 
                             {
-                                // console.log('test 3');
-                                // console.log(`${playerNum} HAS WON`);
                                 setWinner(gamePiece);
                                 isThereAWinner = true;
                             }
                     }
                     }
-                    
-                    
-                    
                 }
-               
-
             })
-
         });
 
        if(numberOfTurns === 9 && isThereAWinner === false)
@@ -102,11 +78,7 @@ const startGame = (() =>{
         } 
         }
         numberOfTurns++;
-     
-
-
     }
-
     function setDisplay(){
 
         gameBoard.forEach(cell => {
@@ -115,7 +87,6 @@ const startGame = (() =>{
             
         });
     }
-
     function setSelected(move, playerPiece, playerOneTurn){
         gameBoard.forEach(cell =>{
 
@@ -174,7 +145,6 @@ const startGame = (() =>{
        playerName = name; 
        welcomeMessage.textContent= `Player 1 ('X') is ${name}`;
     }
-
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
         const getDivs = document.querySelectorAll('.TiTaToCell');
@@ -198,11 +168,7 @@ const startGame = (() =>{
         isThereAWinner = false;
         playerOneTurn = true;
 
-        // mainBody.removeChild(mainDiv);
-        // createGamePad();
-       
-        // mainDiv.style.display = 'none';
-        
+    
         })
     }
     function setWinner(winner){
@@ -246,8 +212,6 @@ const startGame = (() =>{
         
 
     }
-
-    
     function createGamePad(){
 
         
