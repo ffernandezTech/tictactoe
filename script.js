@@ -13,26 +13,17 @@ const startGame = (() =>{
     let numberOfTurns = 1;
     let isThereAWinner = false;
     let playerOneTurn = true;
+    let alreadyPress = false;
     const mainBody = document.querySelector('body');
     const mainDiv = document.createElement('div');
     const welcomeMessage = document.createElement('p');
     
     
     function testForWinner(gamePiece){
-        let savingGamePiece = gamePiece;
-        // let playerNum;
-        // if(playerNumber === true)
-        // {
-        //     playerNum = 'Player 1';
-        // }
-        // else
-        // {
-        //     playerNum = 'Player 2'
-        // }
         if(numberOfTurns >=4 && isThereAWinner == false)
         {
             gameBoard.forEach((row, rowIndex) =>{
-            let rowWin = row.every(matching => matching ===savingGamePiece)
+            let rowWin = row.every(matching => matching ===gamePiece)
             if(rowWin===true)
             {
                  setWinner(gamePiece);
@@ -107,30 +98,39 @@ const startGame = (() =>{
 
             
             cell.addEventListener('click', ()=>{
-            
-        if(playerOneTurn === true )
-            {                
-                let getCellID = cell.getAttribute('id');
-                getCellID = getCellID.slice(7);
-
-                // console.log(getCellID + ' in X');
-
-                setSelected(getCellID, 'X', playerOneTurn);
-                cell.textContent = 'X';
-                cell.style.color= 'Red';
-                
-                playerOneTurn = false;
-            }
-        else
+            if(cell.textContent !== 'X' && cell.textContent !== 'O')
             {
-                 let getCellID = cell.getAttribute('id');
-                  getCellID = getCellID.slice(7);
-                //   console.log(getCellID +' in O');
+                if(playerOneTurn === true )
+                {                
+                    let getCellID = cell.getAttribute('id');
+                    getCellID = getCellID.slice(7);
 
-                setSelected(getCellID, 'O',playerOneTurn);
-                cell.textContent = 'O';
-                cell.style.color= 'Green';
-                playerOneTurn = true;
+                    // console.log(getCellID + ' in X');
+                    
+                    
+                        
+                            setSelected(getCellID, 'X', playerOneTurn);
+                    cell.textContent = 'X';
+                    cell.style.color= 'Red';
+                    
+                    playerOneTurn = false;
+                        
+                    
+                }
+            else
+                {
+                
+                        let getCellID = cell.getAttribute('id');
+                        getCellID = getCellID.slice(7);
+                    //   console.log(getCellID +' in O');
+
+                        setSelected(getCellID, 'O',playerOneTurn);
+                        cell.textContent = 'O';
+                        cell.style.color= 'Green';
+                        playerOneTurn = true;
+                    
+
+                }
             }
 
 
@@ -173,6 +173,7 @@ const startGame = (() =>{
         playerOneTurn = true;
 
     
+        
         })
     }
     function setWinner(winner){
@@ -190,39 +191,32 @@ const startGame = (() =>{
     }
     function getStartGameInfo(){
 
+        
+       
         const getStartBtn = document.querySelector('.btnStart');
-        getStartBtn.addEventListener('click', ()=>{
+        getStartBtn.addEventListener('click', function getingStarted(){
             let p1Name = prompt('Please enter p1\'s name');
             let p2Name = prompt('Please enter p2\'s name ')
               
-        for(let i = 1; i<=9; i++)
-        {
-            const creatingDivs = document.createElement('div');
-            creatingDivs.setAttribute('class', 'TiTaToCell');
-            creatingDivs.setAttribute('id', `cellNum${i}` );
-            mainDiv.appendChild(creatingDivs);
-        }
+       
+        
+       
+    
 
-
-        mainBody.appendChild(mainDiv);
-
-            setPlayerName(p1Name, p2Name);
-            getPlayerChoice();
+        setPlayerName(p1Name, p2Name);
+        getPlayerChoice();
+       
             // mainDiv.style.display = 'block';
-            
 
 
-        setRestartBtn();
+        
+        
         })
+        alreadyPress = true;
         
 
     }
     function createGamePad(){
-
-        
-       
-
-       
         welcomeMessage.setAttribute('class', 'welcomeMessage')
         mainBody.appendChild(welcomeMessage);
 
@@ -243,23 +237,37 @@ const startGame = (() =>{
         btnDiv.appendChild(btnStart);
         btnDiv.appendChild(btnRestart);
 
+        
         mainBody.appendChild(btnDiv);
-
-
-
+         for(let i = 1; i<=9; i++)
+        {
+            const creatingDivs = document.createElement('div');
+            creatingDivs.setAttribute('class', 'TiTaToCell');
+            creatingDivs.setAttribute('id', `cellNum${i}` );
+            mainDiv.appendChild(creatingDivs);
+        }
+        mainBody.appendChild(mainDiv);
         
 
 
         
 
-        getStartGameInfo();
+
+        
+
+        
         
         
 
 
     }
-    setDisplay();
+    
     createGamePad();
+    getStartGameInfo();
+    setRestartBtn();
+   
+    // setDisplay();
+    
     return {setSelected};
 
 
