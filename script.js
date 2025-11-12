@@ -14,13 +14,17 @@ const startGame = (() =>{
     let isThereAWinner = false;
     let playerOneTurn = true;
     let alreadyPress = false;
+
+    // add this to a funcion of its own later
     const mainBody = document.querySelector('body');
     const mainDiv = document.createElement('div');
     const welcomeMessage = document.createElement('p');
     
     
     function testForWinner(gamePiece){
-        if(numberOfTurns >=4 && isThereAWinner == false)
+
+        // move this check for winner somewhere else.
+        if(numberOfTurns >3)
         {
             gameBoard.forEach((row, rowIndex) =>{
             let rowWin = row.every(matching => matching ===gamePiece)
@@ -64,7 +68,7 @@ const startGame = (() =>{
             })
         });
 
-       if(numberOfTurns === 9 && isThereAWinner === false)
+       if(numberOfTurns === 9)
         {
             alert(`It's a TIE. Try again players `);
         } 
@@ -79,7 +83,7 @@ const startGame = (() =>{
             
         });
     }
-    function setSelected(move, playerPiece, playerOneTurn){
+    function setSelected(move, playerPiece){
         gameBoard.forEach(cell =>{
 
             let replace = cell.findIndex(element => element=== +move);
@@ -88,30 +92,34 @@ const startGame = (() =>{
         })
         
          setDisplay();
-         testForWinner(playerPiece, playerOneTurn);
+
+         if(isThereAWinner === false) testForWinner(playerPiece, playerOneTurn);
     }
     function getPlayerChoice(){
 
        
-        const getDivs = document.querySelectorAll('.TiTaToCell');
-        getDivs.forEach(cell =>{
+        const getTiTaToDivs = document.querySelectorAll('.TiTaToCell');
+        getTiTaToDivs.forEach(titatoDiv =>{
 
             
-            cell.addEventListener('click', ()=>{
-            if(cell.textContent !== 'X' && cell.textContent !== 'O')
+            titatoDiv.addEventListener('click', ()=>{
+            if(titatoDiv.textContent !== 'X' && titatoDiv.textContent !== 'O')
             {
                 if(playerOneTurn === true )
                 {                
-                    let getCellID = cell.getAttribute('id');
-                    getCellID = getCellID.slice(7);
+                    let getDivID = titatoDiv.getAttribute('id');
+                    getDivID = getDivID.slice(7);
 
                     // console.log(getCellID + ' in X');
                     
                     
                         
-                            setSelected(getCellID, 'X', playerOneTurn);
-                    cell.textContent = 'X';
-                    cell.style.color= 'Red';
+                            
+                    titatoDiv.textContent = 'X';
+                    titatoDiv.style.color= 'Red';
+                   setTimeout(() => {
+                     setSelected(getDivID, 'X');
+                   }, 3000);
                     
                     playerOneTurn = false;
                         
@@ -120,13 +128,15 @@ const startGame = (() =>{
             else
                 {
                 
-                        let getCellID = cell.getAttribute('id');
-                        getCellID = getCellID.slice(7);
+                        let getDivID = titatoDiv.getAttribute('id');
+                        getDivID = getDivID.slice(7);
                     //   console.log(getCellID +' in O');
 
-                        setSelected(getCellID, 'O',playerOneTurn);
-                        cell.textContent = 'O';
-                        cell.style.color= 'Green';
+                        titatoDiv.textContent = 'O';
+                        titatoDiv.style.color= 'Green';
+                        setTimeout(() => {
+                     setSelected(getDivID, 'O');
+                   }, 3000);
                         playerOneTurn = true;
                     
 
@@ -243,7 +253,7 @@ const startGame = (() =>{
         {
             const creatingDivs = document.createElement('div');
             creatingDivs.setAttribute('class', 'TiTaToCell');
-            creatingDivs.setAttribute('id', `cellNum${i}` );
+            creatingDivs.setAttribute('id', `divNum${i}` );
             mainDiv.appendChild(creatingDivs);
         }
         mainBody.appendChild(mainDiv);
