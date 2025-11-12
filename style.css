@@ -12,17 +12,20 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    /* background-color: hsl(17, 9%, 13%); */
+    background-color: black;
     
 }
-.mainContainer{
+.gridContainer{
     width: 400px;
     height: 400px;
     justify-self: center;
     color: white;
     background-color: black;
-    display: none;
 
     display: grid;
+    visibility: hidden;
+
     grid-template-columns: repeat(3,120px);
     grid-template-rows: repeat(3,120px);
     gap: 5px;
@@ -45,7 +48,9 @@ body{
     align-content: center;
 }
 
-
+button{
+    background-color: hsl(124, 100%, 49%);
+}
 .buttonsDiv{
     justify-self: center;
 }

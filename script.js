@@ -13,12 +13,16 @@ const startGame = (() =>{
     let numberOfTurns = 1;
     let isThereAWinner = false;
     let playerOneTurn = true;
-    let alreadyPress = false;
 
     // add this to a funcion of its own later
     const mainBody = document.querySelector('body');
     const mainDiv = document.createElement('div');
+    const gridContainerDiv = document.createElement('div');
     const welcomeMessage = document.createElement('p');
+
+    //creating btns to control game state.
+    const btnStart = document.createElement('button');
+    const btnRestart = document.createElement('button');
     
     
     function testForWinner(gamePiece){
@@ -108,9 +112,9 @@ const startGame = (() =>{
                 if(playerOneTurn === true )
                 {                
                     let getDivID = titatoDiv.getAttribute('id');
-                    getDivID = getDivID.slice(7);
+                    getDivID = getDivID.slice(6);
 
-                    // console.log(getCellID + ' in X');
+                    console.log(getDivID + ' in X');
                     
                     
                         
@@ -119,7 +123,7 @@ const startGame = (() =>{
                     titatoDiv.style.color= 'Red';
                    setTimeout(() => {
                      setSelected(getDivID, 'X');
-                   }, 3000);
+                   }, 50);
                     
                     playerOneTurn = false;
                         
@@ -129,14 +133,14 @@ const startGame = (() =>{
                 {
                 
                         let getDivID = titatoDiv.getAttribute('id');
-                        getDivID = getDivID.slice(7);
-                    //   console.log(getCellID +' in O');
+                        getDivID = getDivID.slice(6);
+                      console.log(getDivID +' in O');
 
                         titatoDiv.textContent = 'O';
                         titatoDiv.style.color= 'Green';
                         setTimeout(() => {
                      setSelected(getDivID, 'O');
-                   }, 3000);
+                   }, 50);
                         playerOneTurn = true;
                     
 
@@ -157,40 +161,40 @@ const startGame = (() =>{
        player2Name = name2
 
        welcomeMessage.textContent= `Player 1 ('X') is ${name1} and Player 2 ('O') is ${name2}`;
+       welcomeMessage.style.color = 'white';
     }
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
-        const getDivs = document.querySelectorAll('.TiTaToCell');
-        getRestartbtn.addEventListener('click', ()=>{
-           
+       
+        getRestartbtn.addEventListener('click', setFullReset);
 
+    }
+    function setFullReset(){
+        // console.log('HELLO FROM RESET FUn')
+        const getDivs = document.querySelectorAll('.TiTaToCell');
             getDivs.forEach(cell =>{
 
                 cell.textContent = '';
                 
             })
-
         gameBoard.length = 0;
-         gameBoard = [
-        [1,2,3],
-        [4,5,6],
-        [7,8,9]
-    ];
+        gameBoard = [
+                        [1,2,3],
+                        [4,5,6],
+                        [7,8,9]
+                    ];
         player1Name = '';
         player2Name = '';
         numberOfTurns = 1;
         isThereAWinner = false;
         playerOneTurn = true;
-
-    
-        
-        })
     }
     function setWinner(winner){
 
         if(winner === 'X')
         {
             alert(`${winner} have won! Good Job ${player1Name} :D`)
+
         }
         else{
             alert(`${winner} have won! Good Job ${player2Name} :D`)
@@ -201,12 +205,19 @@ const startGame = (() =>{
     }
     function getStartGameInfo(){
 
-        
+       
        
         const getStartBtn = document.querySelector('.btnStart');
         getStartBtn.addEventListener('click', function getingStarted(){
+            
+
+            setFullReset();
+            btnStart.textContent = 'New Game';
+
             let p1Name = prompt('Please enter p1\'s name');
-            let p2Name = prompt('Please enter p2\'s name ')
+            let p2Name = prompt('Please enter p2\'s name ');
+
+            gridContainerDiv.style.visibility ='visible';
               
        
         
@@ -222,18 +233,16 @@ const startGame = (() =>{
         
         
         })
-        alreadyPress = true;
+       
         
 
     }
     function createGamePad(){
         welcomeMessage.setAttribute('class', 'welcomeMessage')
-        mainBody.appendChild(welcomeMessage);
+        gridContainerDiv.setAttribute('class', 'gridContainer')
+        mainDiv.setAttribute('class', 'mainContainer');
 
-        mainDiv.setAttribute('class', 'mainContainer')
-
-        const btnStart = document.createElement('button');
-        const btnRestart = document.createElement('button');
+        
         btnStart.setAttribute('class', 'gameBtns btnStart');
         btnRestart.setAttribute('class', 'gameBtns btnRestart');
         btnStart.textContent = 'Start';
@@ -248,14 +257,17 @@ const startGame = (() =>{
         btnDiv.appendChild(btnRestart);
 
         
-        mainBody.appendChild(btnDiv);
+        mainDiv.appendChild(welcomeMessage);
+        mainDiv.appendChild(btnDiv);
+        mainDiv.appendChild(gridContainerDiv);
          for(let i = 1; i<=9; i++)
         {
             const creatingDivs = document.createElement('div');
             creatingDivs.setAttribute('class', 'TiTaToCell');
             creatingDivs.setAttribute('id', `divNum${i}` );
-            mainDiv.appendChild(creatingDivs);
+            gridContainerDiv.appendChild(creatingDivs);
         }
+
         mainBody.appendChild(mainDiv);
         
 
