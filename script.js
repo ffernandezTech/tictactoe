@@ -8,8 +8,8 @@ const startGame = (() =>{
         [4,5,6],
         [7,8,9]
     ];
-    let player1Name = '';
-    let player2Name = '';
+    let player1Name = 'Player 1';
+    let player2Name = 'Player 2';
     let numberOfTurns = 1;
     let isThereAWinner = false;
     let playerOneTurn = true;
@@ -158,11 +158,11 @@ const startGame = (() =>{
 
     }
     function setPlayerName(name1, name2){
-       player1Name = name1; 
-       player2Name = name2
+       if(name1 != "") player1Name = name1; 
+       if(name2 != "") player2Name = name2;
 
-       welcomeMessage.textContent= `Player 1 ('X') is ${name1} and Player 2 ('O') is ${name2}`;
-       welcomeMessage.style.color = 'white';
+       welcomeMessage.textContent= `${player1Name} is 'X' and ${player2Name} is 'O'`;
+       welcomeMessage.style.color = 'black';
     }
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
@@ -210,28 +210,21 @@ const startGame = (() =>{
        
         const getStartBtn = document.querySelector('.btnStart');
         getStartBtn.addEventListener('click', function getingStarted(){
-            
 
-            if(btnStart.textContent === 'Start')
+            if(getStartBtn.textContent === 'Start')
             {
-                
                 btnStart.textContent = 'New Game';
-
-                let p1Name = prompt('Please enter p1\'s name');
-                let p2Name = prompt('Please enter p2\'s name ');
-
-                gridContainerDiv.style.visibility ='visible';
-                setPlayerName(p1Name, p2Name);
+                btnRestart.style.visibility= 'visible';
+                const getP1Name = document.getElementById('p1Name').value;
+                const getP2Name = document.querySelector('#p2Name').value;
+                setPlayerName(getP1Name, getP2Name);
                 getPlayerChoice();
                 
        
             }
             else{
                 setFullReset();
-                btnStart.textContent = 'Start';
-
-                
-                gridContainerDiv.style.visibility ='hidden';
+                btnStart.textContent = 'Start'
                 welcomeMessage.textContent = '';
                 
                 
