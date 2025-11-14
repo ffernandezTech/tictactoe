@@ -16,6 +16,16 @@ body{
     /* background-color: black; */
     
 }
+
+fieldset {
+    width: 300px;
+    height: 400px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
 .gridContainer{
     width: 400px;
     height: 400px;

@@ -16,12 +16,12 @@ const startGame = (() =>{
 
     // add this to a funcion of its own later
     const mainBody = document.querySelector('body');
-    const mainDiv = document.createElement('div');
+    const mainDiv = document.querySelector('.mainContainer')
     const gridContainerDiv = document.createElement('div');
     const welcomeMessage = document.createElement('p');
 
     //creating btns to control game state.
-    const btnStart = document.createElement('button');
+    const btnStart = document.querySelector('.btnStart')
     const btnRestart = document.createElement('button');
     
     
@@ -256,20 +256,18 @@ const startGame = (() =>{
     function createGamePad(){
         welcomeMessage.setAttribute('class', 'welcomeMessage')
         gridContainerDiv.setAttribute('class', 'gridContainer')
-        mainDiv.setAttribute('class', 'mainContainer');
+     
 
         
-        btnStart.setAttribute('class', 'gameBtns btnStart');
         btnRestart.setAttribute('class', 'gameBtns btnRestart');
-        btnStart.textContent = 'Start';
         btnRestart.textContent = 'Restart';
+        btnRestart.style.visibility = 'hidden';
 
 
         const btnDiv = document.createElement('div');
         btnDiv.setAttribute('class', 'buttonsDiv')
         
 
-        btnDiv.appendChild(btnStart);
         btnDiv.appendChild(btnRestart);
 
         
