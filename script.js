@@ -211,21 +211,37 @@ const startGame = (() =>{
         getStartBtn.addEventListener('click', function getingStarted(){
             
 
-            setFullReset();
-            btnStart.textContent = 'New Game';
+            if(btnStart.textContent === 'Start')
+            {
+                
+                btnStart.textContent = 'New Game';
 
-            let p1Name = prompt('Please enter p1\'s name');
-            let p2Name = prompt('Please enter p2\'s name ');
+                let p1Name = prompt('Please enter p1\'s name');
+                let p2Name = prompt('Please enter p2\'s name ');
 
-            gridContainerDiv.style.visibility ='visible';
-              
+                gridContainerDiv.style.visibility ='visible';
+                setPlayerName(p1Name, p2Name);
+                getPlayerChoice();
+                
        
+            }
+            else{
+                setFullReset();
+                btnStart.textContent = 'Start';
+
+                
+                gridContainerDiv.style.visibility ='hidden';
+                welcomeMessage.textContent = '';
+                
+                
+       
+            }
+            
         
        
     
 
-        setPlayerName(p1Name, p2Name);
-        getPlayerChoice();
+     
        
             // mainDiv.style.display = 'block';
 
