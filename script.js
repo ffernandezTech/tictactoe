@@ -17,6 +17,7 @@ const startGame = (() =>{
     // add this to a funcion of its own later
     const mainBody = document.querySelector('body');
     const mainDiv = document.querySelector('.mainContainer')
+    const subContentDiv = document.createElement('div');
     const gridContainerDiv = document.createElement('div');
     const welcomeMessage = document.createElement('p');
 
@@ -271,9 +272,9 @@ const startGame = (() =>{
         btnDiv.appendChild(btnRestart);
 
         
-        mainDiv.appendChild(welcomeMessage);
-        mainDiv.appendChild(btnDiv);
-        mainDiv.appendChild(gridContainerDiv);
+        subContentDiv.appendChild(welcomeMessage);
+        subContentDiv.appendChild(btnDiv);
+        subContentDiv.appendChild(gridContainerDiv);
          for(let i = 1; i<=9; i++)
         {
             const creatingDivs = document.createElement('div');
@@ -282,6 +283,7 @@ const startGame = (() =>{
             gridContainerDiv.appendChild(creatingDivs);
         }
 
+        mainDiv.appendChild(subContentDiv);
         mainBody.appendChild(mainDiv);
         
 
