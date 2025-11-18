@@ -20,6 +20,7 @@ const startGame = (() =>{
     const subContentDiv = document.createElement('div');
     const gridContainerDiv = document.createElement('div');
     const setGameInfo = document.createElement('div');
+    const welcomeMessage = document.createElement('p');
 
     
 
@@ -227,6 +228,7 @@ const startGame = (() =>{
             }
             else{
                 setFullReset();
+                alert('New Game Started');
                 btnStart.textContent = 'Start'
                 welcomeMessage.textContent = '';
                 
@@ -253,14 +255,14 @@ const startGame = (() =>{
     function createGamePad(){
 
         setGameInfo.setAttribute('class', 'scoreboard')
-        const welcomeMessage = document.createElement('p');
+        
         welcomeMessage.setAttribute('class', 'welcomeMessage')
 
         gridContainerDiv.setAttribute('class', 'gridContainer')
 
 
-        welcomeMessage.textContent= 'SCOREBOARD:';
-        welcomeMessage.style.textDecoration = 'underline';
+        // welcomeMessage.textContent= 'SCOREBOARD:';
+        // welcomeMessage.style.textDecoration = 'underline';
 
         setGameInfo.appendChild(welcomeMessage);
      
