@@ -59,6 +59,14 @@ input[type='text']{
     justify-items: center ;
     align-items: center;
 }
+.rightContainer{
+   
+    display: grid;
+    justify-items: center;
+    align-items: center;
+   
+    
+}
 .gridContainer{
     width: 370px;
     height: 370px;
@@ -76,8 +84,11 @@ input[type='text']{
     align-content: center;
 }
 .welcomeMessage{
-    font-size: 50px;
+    font-size: 30px;
+    width: 40ch;
     font-weight: bolder;
+    margin-bottom: 10px;
+
 }
 
 .TiTaToCell{
