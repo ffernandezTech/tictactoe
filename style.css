@@ -59,6 +59,11 @@ input[type='text']{
     justify-items: center ;
     align-items: center;
 }
+.rightContainer{
+    display: grid;
+    grid-template-rows: 250px 1fr;
+    grid-template-columns: 1fr;
+}
 .gridContainer{
     width: 370px;
     height: 370px;
@@ -96,6 +101,7 @@ button{
 }
 .buttonsDiv{
     justify-self: center;
+    margin-top:  20px;
 }
 .gameBtns{
 
