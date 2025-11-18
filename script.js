@@ -163,11 +163,11 @@ const startGame = (() =>{
     function setPlayerName(name1, name2){
        if(name1 != "") player1Name = name1; 
        if(name2 != "") player2Name = name2;
-
-    //    welcomeMessage.textContent= `${player1Name} is 'X' and ${player2Name} is 'O'`;
-
-       welcomeMessage.style.color = 'black';
+            // welcomeMessage.textContent= `${player1Name} is 'X' and ${player2Name} is 'O'`;
+            // welcomeMessage.style.color = 'black';
+       
     }
+    
     function setRestartBtn(){
         const getRestartbtn = document.querySelector('.btnRestart');
        
@@ -193,16 +193,19 @@ const startGame = (() =>{
         numberOfTurns = 1;
         isThereAWinner = false;
         playerOneTurn = true;
+        welcomeMessage.textContent = '';
     }
     function setWinner(winner){
 
         if(winner === 'X')
         {
-            alert(`${winner} have won! Good Job ${player1Name} :D`)
+            // alert(`${winner} have won! Good Job ${player1Name} :D`)
+            welcomeMessage.textContent= `${winner} have won! Good Job ${player1Name} :D`;
 
         }
         else{
-            alert(`${winner} have won! Good Job ${player2Name} :D`)
+            // alert(`${winner} have won! Good Job ${player2Name} :D`)
+            welcomeMessage.textContent = `${winner} have won! Good Job ${player2Name} :D`;
         }
 
         
@@ -262,7 +265,7 @@ const startGame = (() =>{
 
 
         // welcomeMessage.textContent= 'SCOREBOARD:';
-        // welcomeMessage.style.textDecoration = 'underline';
+        welcomeMessage.style.textDecoration = 'underline';
 
         setGameInfo.appendChild(welcomeMessage);
      
