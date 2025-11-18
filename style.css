@@ -52,6 +52,7 @@ input[type='text']{
 .mainContainer{
     height: 100vh;
     width: 100vw;
+    background-color: #E8D2AE;
     display: grid;
     grid-template-columns: 300px 1fr;
     grid-template-rows: 1fr;
@@ -59,8 +60,8 @@ input[type='text']{
     align-items: center;
 }
 .gridContainer{
-    width: 400px;
-    height: 400px;
+    width: 370px;
+    height: 370px;
     
     color: white;
     background-color: black;
@@ -81,7 +82,7 @@ input[type='text']{
 
 .TiTaToCell{
 
-    background-color: white;
+    background-color: #E8D2AE;
     font-size: 50px;
     font-weight: bolder;
 

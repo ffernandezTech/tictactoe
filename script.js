@@ -121,7 +121,7 @@ const startGame = (() =>{
                         
                             
                     titatoDiv.textContent = 'X';
-                    titatoDiv.style.color= 'Red';
+                    titatoDiv.style.color= '#CB8589';
                    setTimeout(() => {
                      setSelected(getDivID, 'X');
                    }, 50);
@@ -138,7 +138,7 @@ const startGame = (() =>{
                       console.log(getDivID +' in O');
 
                         titatoDiv.textContent = 'O';
-                        titatoDiv.style.color= 'Green';
+                        titatoDiv.style.color= '#9A8B8C';
                         setTimeout(() => {
                      setSelected(getDivID, 'O');
                    }, 50);
@@ -161,7 +161,8 @@ const startGame = (() =>{
        if(name1 != "") player1Name = name1; 
        if(name2 != "") player2Name = name2;
 
-       welcomeMessage.textContent= `${player1Name} is 'X' and ${player2Name} is 'O'`;
+    //    welcomeMessage.textContent= `${player1Name} is 'X' and ${player2Name} is 'O'`;
+
        welcomeMessage.style.color = 'black';
     }
     function setRestartBtn(){
@@ -268,6 +269,8 @@ const startGame = (() =>{
         subContentDiv.appendChild(welcomeMessage);
         subContentDiv.appendChild(btnDiv);
         subContentDiv.appendChild(gridContainerDiv);
+
+        subContentDiv.setAttribute('class', 'rightContainer')
          for(let i = 1; i<=9; i++)
         {
             const creatingDivs = document.createElement('div');
